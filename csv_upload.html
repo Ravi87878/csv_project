@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+</head>
+<body>
+    <h2>Upload a File</h2>
+    <form id="fileUploadForm">
+        <input type="file" id="fileInput" name="fileInput" accept=".csv, .txt" required>
+        <button type="submit">Upload File</button>
+    </form>
+
+    <div id="status"></div>
+
+    <script>
+        document.getElementById('fileUploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+
+            fetch('http://127.0.0.1:8000/api/v1/csv/upload-csv/', {  // Replace with your endpoint
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status').innerText = 'File uploaded: ' + data.fileName;
+            })
+            .catch(error => {
+                console.error('Error uploading file:', error);
+                document.getElementById('status').innerText = 'Error uploading file.';
+            });
+        });
+    </script>
+</body>
+</html>
