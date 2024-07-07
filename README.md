@@ -1,11 +1,11 @@
 # csv_project
 
-Upload CSV File
+#Upload CSV File
 Endpoint: POST /api/v1/csv/upload-csv/
 
 Uploads a CSV file for querying.
 
-Parameters:
+##Parameters:
 
 file: Multipart form-data containing the CSV file to upload.
 Responses:
@@ -13,12 +13,12 @@ Responses:
 201 Created: CSV file uploaded successfully.
 400 Bad Request: Invalid file format or server error.
 
-Query CSV Data
+#Query CSV Data
 Endpoint: GET /api/v1/csv/{pk}/query/
 
 Retrieves and filters CSV data based on query parameters.
 
-Parameters:
+##Parameters:
 
 pk: Path parameter specifying the primary key of the CSV file.
 Query parameters for filtering:
